@@ -37,7 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'cpf_field',
     'accounts',
+
 ]
 
 MIDDLEWARE = [
@@ -127,3 +129,8 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     'static',
 ]
+
+AUTH_USER_MODEL = "accounts.Usuario"
+LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "login"
+LOGIN_URL = "login"

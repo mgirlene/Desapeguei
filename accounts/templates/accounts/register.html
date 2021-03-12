@@ -53,7 +53,8 @@
                 <div class="card-body p-4">
                     <div class="text-center small text-muted mb-4">... ou insira suas informações abaixo.</div>
                     <!-- Login form-->
-                    <form>
+                    <form method="post">
+                        {% csrf_token %}
                         <!-- Form Row-->
                         <div class="form-row">
                             <div class="col-md-6">
@@ -69,6 +70,32 @@
                                 <div class="form-group">
                                     <label class="text-gray-600 small" for="id_last_name">Sobrenome</label>
                                     <input name="last_name" id="id_last_name" class="form-control form-control-solid"
+                                           type="text" placeholder="" aria-label="Last Name" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-4">
+                                <!-- Form Group (first name)-->
+                                <div class="form-group">
+                                    <label class="text-gray-600 small" for="id_cpf">CPF</label>
+                                    <input name="cpf" id="id_cpf" class="form-control form-control-solid"
+                                           type="text" placeholder="" aria-label="First Name" required>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <!-- Form Group (last name)-->
+                                <div class="form-group">
+                                    <label class="text-gray-600 small" for="id_data_nascimento">Data de Nascimento</label>
+                                    <input name="data_nascimento" id="id_data_nascimento" class="form-control form-control-solid"
+                                           type="text" placeholder="" aria-label="Last Name" required>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <!-- Form Group (last name)-->
+                                <div class="form-group">
+                                    <label class="text-gray-600 small" for="id_celular">Celular</label>
+                                    <input name="celular" id="id_celular" class="form-control form-control-solid"
                                            type="text" placeholder="" aria-label="Last Name" required>
                                 </div>
                             </div>
@@ -100,7 +127,7 @@
                         </div>
                         <!-- Form Group (form submission)-->
                         <div class="form-group d-flex align-items-center justify-content-center">
-                            <a class="btn btn-primary" href="auth-login-social.html">Criar conta</a>
+                            <button class="btn btn-primary" type="submit">Criar conta</button>
                         </div>
                     </form>
                 </div>
@@ -126,6 +153,15 @@
 
 <!-- Custom scripts for all pages-->
 <script src="{% static 'js/sb-admin-2.min.js' %}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" integrity="sha512-pHVGpX7F/27yZ0ISY+VVjyULApbDlD0/X0rgGbTqCE7WFW5MezNTWG/dnhtbBuICzsd0WQPgpE4REBLv+UqChw==" crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#id_data_nascimento").mask("99/99/9999")
+        $("#id_celular").mask("(99)99999-9999")
+        $("#id_cpf").mask("000.000.000-00")
+    });
+</script>
 
 </body>
 

@@ -82,7 +82,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'Desapeguei_dsc',
         'USER': 'postgres',
-        'PASSWORD': 'postgres',
+        'PASSWORD': '9991',
         'HOST': '127.0.0.1',
         'PORT': '',
     }
@@ -131,6 +131,6 @@ STATICFILES_DIRS = [
 ]
 
 AUTH_USER_MODEL = "accounts.Usuario"
-LOGIN_REDIRECT_URL = "/"
+LOGIN_REDIRECT_URL = "password"
 LOGOUT_REDIRECT_URL = "login"
 LOGIN_URL = "login"

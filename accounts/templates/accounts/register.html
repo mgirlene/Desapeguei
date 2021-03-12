@@ -86,8 +86,10 @@
                             <div class="col-md-4">
                                 <!-- Form Group (last name)-->
                                 <div class="form-group">
-                                    <label class="text-gray-600 small" for="id_data_nascimento">Data de Nascimento</label>
-                                    <input name="data_nascimento" id="id_data_nascimento" class="form-control form-control-solid"
+                                    <label class="text-gray-600 small" for="id_data_nascimento">Data de
+                                        Nascimento</label>
+                                    <input name="data_nascimento" id="id_data_nascimento"
+                                           class="form-control form-control-solid"
                                            type="text" placeholder="" aria-label="Last Name" required>
                                 </div>
                             </div>
@@ -135,7 +137,7 @@
                 <div class="card-body px-5 py-4">
                     <div class="small text-center">
                         Já tem uma conta?
-                        <a href="auth-login-social.html">Login!</a>
+                        <a href="{% url 'login' %}">Login!</a>
                     </div>
                 </div>
             </div>
@@ -153,7 +155,9 @@
 
 <!-- Custom scripts for all pages-->
 <script src="{% static 'js/sb-admin-2.min.js' %}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" integrity="sha512-pHVGpX7F/27yZ0ISY+VVjyULApbDlD0/X0rgGbTqCE7WFW5MezNTWG/dnhtbBuICzsd0WQPgpE4REBLv+UqChw==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"
+        integrity="sha512-pHVGpX7F/27yZ0ISY+VVjyULApbDlD0/X0rgGbTqCE7WFW5MezNTWG/dnhtbBuICzsd0WQPgpE4REBLv+UqChw=="
+        crossorigin="anonymous"></script>
 
 <script type="text/javascript">
     $(document).ready(function () {

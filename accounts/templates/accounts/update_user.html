@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Cadastro</title>
+    <title>Update</title>
 
     <!-- Custom fonts for this template-->
     <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
@@ -31,28 +31,25 @@
             <!-- Social registration form-->
             <div class="card my-5">
                 <div class="card-body p-4 text-center">
-                    <div class="h3 font-weight-light mb-3">Cadastrar-se</div>
-                    <div class="small text-muted mb-2">Faça login usando...</div>
-                    <!-- Social registration links-->
-                    <a class="btn btn-icon btn-facebook btn-circle mx-1" href="#!">
-                        <svg class="svg-inline--fa fa-facebook-f fa-w-10 fa-fw fa-sm" aria-hidden="true"
-                             focusable="false" data-prefix="fab" data-icon="facebook-f" role="img"
-                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" data-fa-i2svg="">
-                            <path fill="currentColor"
-                                  d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"></path>
-                        </svg><!-- <i class="fab fa-facebook-f fa-fw fa-sm"></i> Font Awesome fontawesome.com --></a>
-                    <a class="btn btn-icon btn-google btn-circle mx-1" href="#!">
-                        <svg class="svg-inline--fa fa-google fa-w-16 fa-fw fa-sm" aria-hidden="true" focusable="false"
-                             data-prefix="fab" data-icon="google" role="img" xmlns="http://www.w3.org/2000/svg"
-                             viewBox="0 0 488 512" data-fa-i2svg="">
-                            <path fill="currentColor"
-                                  d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"></path>
-                        </svg><!-- <i class="fab fa-google fa-fw fa-sm"></i> Font Awesome fontawesome.com --></a>
+                    <div class="h3 font-weight-light mb-3">Edite suas informações</div>
                 </div>
                 <hr class="my-0">
                 <div class="card-body p-4">
-                    <div class="text-center small text-muted mb-4">... ou insira suas informações abaixo.</div>
                     <!-- Login form-->
+                    {% if form.errors %}
+                        {% for field in form %}
+                            {% for error in field.errors %}
+                                <div class="alert alert-danger">
+                                    <strong>{{ field.name|title }} {{ error|escape }}</strong>
+                                </div>
+                            {% endfor %}
+                        {% endfor %}
+                        {% for error in form.non_field_errors %}
+                            <div class="alert alert-danger">
+                                <strong>{{ error|escape }}</strong>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
                     <form method="post">
                         {% csrf_token %}
                         <!-- Form Row-->
@@ -62,7 +59,8 @@
                                 <div class="form-group">
                                     <label class="text-gray-600 small" for="id_first_name">Nome</label>
                                     <input name="first_name" id="id_first_name" class="form-control form-control-solid"
-                                           type="text" placeholder="" aria-label="First Name" required>
+                                           type="text" placeholder="" aria-label="First Name"
+                                           value="{{ form.first_name.value }}" required>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -70,7 +68,8 @@
                                 <div class="form-group">
                                     <label class="text-gray-600 small" for="id_last_name">Sobrenome</label>
                                     <input name="last_name" id="id_last_name" class="form-control form-control-solid"
-                                           type="text" placeholder="" aria-label="Last Name" required>
+                                           type="text" placeholder="" aria-label="Last Name"
+                                           value="{{ form.last_name.value }}" required>
                                 </div>
                             </div>
                         </div>
@@ -80,7 +79,8 @@
                                 <div class="form-group">
                                     <label class="text-gray-600 small" for="id_cpf">CPF</label>
                                     <input name="cpf" id="id_cpf" class="form-control form-control-solid"
-                                           type="text" placeholder="" aria-label="First Name" required>
+                                           type="text" placeholder="" aria-label="First Name"
+                                           value="{{ form.cpf.value }}" required>
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -90,7 +90,8 @@
                                         Nascimento</label>
                                     <input name="data_nascimento" id="id_data_nascimento"
                                            class="form-control form-control-solid"
-                                           type="date" placeholder="" required>
+                                           type="date" placeholder="" aria-label="Last Name"
+                                           value="{{ form.data_nascimento.value|date:'Y-m-d' }}" required>
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -98,47 +99,15 @@
                                 <div class="form-group">
                                     <label class="text-gray-600 small" for="id_celular">Celular</label>
                                     <input name="celular" id="id_celular" class="form-control form-control-solid"
-                                           type="text" placeholder="" aria-label="Last Name" required>
+                                           type="text" placeholder="" aria-label="Last Name"
+                                           {% if form.celular %} value="{{ form.celular.value }}"{% endif %} required>
                                 </div>
                             </div>
                         </div>
-                        <!-- Form Group (email address)-->
-                        <div class="form-group">
-                            <label class="text-gray-600 small" for="id_username">Email</label>
-                            <input name="username" id="id_username" class="form-control form-control-solid" type="text"
-                                   placeholder="" aria-label="Email Address" required>
-                        </div>
-                        <!-- Form Row-->
-                        <div class="form-row">
-                            <div class="col-md-6">
-                                <!-- Form Group (choose password)-->
-                                <div class="form-group">
-                                    <label class="text-gray-600 small" for="id_password1">Senha</label>
-                                    <input name="password1" id="id_password1" class="form-control form-control-solid"
-                                           type="password" placeholder="" aria-label="Password" required>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <!-- Form Group (confirm password)-->
-                                <div class="form-group">
-                                    <label class="text-gray-600 small" for="id_password2">Confirmar senha</label>
-                                    <input name="password2" id="id_password2" class="form-control form-control-solid"
-                                           type="password" placeholder="" aria-label="Confirm Password" required>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Form Group (form submission)-->
                         <div class="form-group d-flex align-items-center justify-content-center">
-                            <button class="btn btn-primary" type="submit">Criar conta</button>
+                            <button class="btn btn-primary" type="submit">Editar dados</button>
                         </div>
                     </form>
-                </div>
-                <hr class="my-0">
-                <div class="card-body px-5 py-4">
-                    <div class="small text-center">
-                        Já tem uma conta?
-                        <a href="{% url 'login' %}">Login!</a>
-                    </div>
                 </div>
             </div>
         </div>
@@ -161,8 +130,8 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        $("#id_celular").mask("(99)99999-9999")
-        $("#id_cpf").mask("000.000.000-00")
+        $("#id_celular").mask("(00)00000-0000");
+        $("#id_cpf").mask("000.000.000-00");
     });
 </script>
 

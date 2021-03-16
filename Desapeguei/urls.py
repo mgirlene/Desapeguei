@@ -4,7 +4,12 @@ from django.views.generic import TemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('accounts.urls')),
     path('', include('django.contrib.auth.urls')),
-    path('index/', TemplateView.as_view(template_name="index.html"), name="index"),
+    path('', include('accounts.urls')),
+    path('', include('gerenciador.urls')),
+    path('carrinho/', include('carrinho.urls')),
+    path('pagamento/', include('pagamento.urls')),
+    path('produto/', include('produto.urls')),
+    path('vendas/', include('vendas.urls')),
+
 ]

@@ -1,4 +1,5 @@
 from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic import TemplateView
 from .models import Usuario
 from .forms import UsuarioRegisterForm
 from django.urls import reverse_lazy
@@ -6,8 +7,9 @@ from django.core.mail import send_mail
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.decorators import login_required
 
+class index(LoginRequiredMixin, TemplateView):
+    template_name = 'accounts/index.html'
 
 class UserCreate(CreateView):
     model = Usuario

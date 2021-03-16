@@ -38,7 +38,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'cpf_field',
+    #apps
     'accounts',
+    'carrinho',
+    'gerenciador',
+    'pagamento',
+    'produto',
+    'vendas',
 
 ]
 
@@ -82,7 +88,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'Desapeguei_dsc',
         'USER': 'postgres',
-        'PASSWORD': '9991',
+        'PASSWORD': 'postgres',
         'HOST': '127.0.0.1',
         'PORT': '',
     }

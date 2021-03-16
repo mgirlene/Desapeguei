@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'cpf_field',
     #apps
     'accounts',
@@ -45,6 +46,13 @@ INSTALLED_APPS = [
     'pagamento',
     'produto',
     'vendas',
+
+    #allauth
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.facebook',
 
 ]
 
@@ -78,6 +86,13 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'Desapeguei.wsgi.application'
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+SITE_ID = 1
 
 
 # Database
@@ -149,3 +164,15 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'desapegueidsc@gmail.com'
 EMAIL_HOST_PASSWORD = 'projeto2021'
 EMAIL_PORT = 587
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    }
+}

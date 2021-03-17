@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import UserCreate,UserUpdate, index
+from .views import UserCreate,UserUpdate
 
 urlpatterns = [
     path('cadastro/', UserCreate.as_view(), name="userCreate"),

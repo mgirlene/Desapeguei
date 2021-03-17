@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block title %}Index - Desapeguei{% endblock title %}
+
+{% block content %}
+    <div class="row justify-content-center">
+        <div class="col-xl-10 col-lg-8 col-md-8 col-sm-11 mt-4 mb-5 pb-5 justify-content-center">
+            <nav class="navbar navbar-light justify-content-center mt-4">
+                <form class="form-inline">
+                    <div class="input-group mb-3">
+                        <input class="form-control form-control-lg" type="search"
+                               placeholder="Type a name"
+                               aria-label="Search" id="search">
+                        <div class="input-group-append">
+                            <button type="button" class=" btn btn-primary btn-lg" id="btnSort"><i
+                                    class="fa fa-search"></i></button>
+                        </div>
+                    </div>
+                </form>
+
+            </nav>
+
+            <!-- Cards -->
+            <div class="layout-margin-8 mt-4">
+                <div class="card-deck">
+                    <div class="card card-shadow text-center">
+                        <div class="card-body">
+                            <h4 class="card-title">Rob Doe</h4>
+                            <p class="card-text">UX Designer</p>
+                            <div class="dropdown-divider"></div>
+                            <p class="card-text"><small class="text-muted">Team A</small></p>
+                            <a href="#">
+                                <button type="button" class="btn btn-outline-primary">Email</button>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card card-shadow text-center">
+                        <div class="card-body">
+                            <h4 class="card-title">Scott Doe</h4>
+                            <p class="card-text">UX Designer</p>
+                            <div class="dropdown-divider"></div>
+                            <p class="card-text"><small class="text-muted">Team B</small></p>
+                            <a href="#">
+                                <button type="button" class="btn btn-outline-primary">Email</button>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card card-shadow text-center">
+                        <div class="card-body">
+                            <h4 class="card-title">John Doe Vasile</h4>
+                            <p class="card-text">Product Designer</p>
+                            <div class="dropdown-divider"></div>
+                            <p class="card-text"><small class="text-muted">Team C</small></p>
+                            <a href="#">
+                                <button type="button" class="btn btn-outline-primary">Email</button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+
+
+{% block js %}
+    <script type="text/javascript">
+        // this overrides `contains` to make it case insenstive
+        jQuery.expr[':'].contains = function (a, i, m) {
+            return jQuery(a).text().toUpperCase()
+                .indexOf(m[3].toUpperCase()) >= 0;
+        };
+
+        $('#search').keyup(function () {
+            $('.card').removeClass('d-none');
+            var filter = $(this).val(); // get the value of the input, which we filter on
+            $('.card-deck').find('.card .card-body h4:not(:contains("' + filter + '"))').parent().parent().addClass('d-none');
+        })
+
+        $('#btnSort').click(function () {
+            $('.card-deck .card').sort(function (a, b) {
+                return $(a).find(".card-title").text() > $(b).find(".card-title").text() ? 1 : -1;
+            }).appendTo(".card-deck");
+        })
+    </script>
+{% endblock js %}
+

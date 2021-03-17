@@ -4,5 +4,5 @@ from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-class Index(LoginRequiredMixin, TemplateView):
-    template_name = 'accounts/index.html'
+class Index(TemplateView):
+    template_name = 'gerenciador/index.html'

@@ -8,9 +8,6 @@ from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-class index(LoginRequiredMixin, TemplateView):
-    template_name = 'accounts/index.html'
-
 class UserCreate(CreateView):
     model = Usuario
     template_name = 'accounts/register.html'

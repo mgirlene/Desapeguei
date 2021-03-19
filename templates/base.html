@@ -48,7 +48,9 @@
                     <i class="fa fa-bars"></i>
                 </button>
                 <div class="nav-item dropdown no-arrow mx-1 float-left pl-3">
-                    <h3 class="cor_nav">Desapeguei</h3>
+                    <a href="{% url 'index' %}">
+                        <h3 class="cor_nav">Desapeguei</h3>
+                    </a>
                 </div>
                 <!-- Topbar Navbar -->
                 <ul class="navbar-nav ml-auto">
@@ -90,13 +92,13 @@
                             </a>
                         </li>
                         <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link cor_nav dropdown-toggle" href="#">
+                            <a class="nav-link cor_nav dropdown-toggle" href="{% url 'produto_list' %}">
                                 <i class="cor_nav fas fa-barcode"></i>
                                 <span class="ml-1 cor_nav">Produtos</span>
                             </a>
                         </li>
                         <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link cor_nav dropdown-toggle" href="#">
+                            <a class="nav-link cor_nav dropdown-toggle" href="{% url 'produto_cadastro' %}">
                                 <i class="cor_nav fas fa-bullhorn"></i>
                                 <span class="ml-1 cor_nav">Anunciar</span>
                             </a>

@@ -22,17 +22,17 @@
             <div class="layout-margin-8 mt-4">
                 <div class="card-deck">
                         {% for produto in produto_list %}
-                            <div class="col-12 col-sm-6 col-md-3 d-flex align-items-sm-stretch flex-column">
-                                <div class="card d-flex flex-fill mb-5" style="width:250px !important;">
+                            <div class="col-12 col-sm-6 col-md-4 d-flex align-items-sm-stretch flex-column">
+                                <div class="card d-flex flex-fill mb-5" style="width:310px !important; border: 1px solid gray">
                                     {% if produto.imagem %}
                                         <img class="card-img-top pr-0 mr-0" src="{{ produto.imagem.url }}"
-                                             style="width:250px !important;height:200px !important;">
+                                             style="width:300px !important;height:450px !important;">
                                     {% endif %}
                                     <div class="card-body">
-                                        <h4 class="card-title">{{ produto.nome }}</h4>
+                                        <h5 class="card-title">{{ produto.nome }}</h5>
                                         <p class="card-text">{{ produto.descricao }}</p>
-                                        <p class="card-text"><small class="text-muted">{{ produto.preco }}</small>
-                                        </p>
+                                        <h5 class="card-text"><b>R${{ produto.preco }}</b>
+                                            <a href="#" class="d-flex float-right btn btn-success">Comprar</a></h5>
                                     </div>
                                 </div>
                             </div>

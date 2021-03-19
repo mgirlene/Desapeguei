@@ -17,45 +17,26 @@
                         </div>
                     </div>
                 </form>
-
             </nav>
-
             <!-- Cards -->
             <div class="layout-margin-8 mt-4">
                 <div class="card-deck">
-                    <div class="card card-shadow text-center">
-                        <div class="card-body">
-                            <h4 class="card-title">Rob Doe</h4>
-                            <p class="card-text">UX Designer</p>
-                            <div class="dropdown-divider"></div>
-                            <p class="card-text"><small class="text-muted">Team A</small></p>
-                            <a href="#">
-                                <button type="button" class="btn btn-outline-primary">Email</button>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="card card-shadow text-center">
-                        <div class="card-body">
-                            <h4 class="card-title">Scott Doe</h4>
-                            <p class="card-text">UX Designer</p>
-                            <div class="dropdown-divider"></div>
-                            <p class="card-text"><small class="text-muted">Team B</small></p>
-                            <a href="#">
-                                <button type="button" class="btn btn-outline-primary">Email</button>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="card card-shadow text-center">
-                        <div class="card-body">
-                            <h4 class="card-title">John Doe Vasile</h4>
-                            <p class="card-text">Product Designer</p>
-                            <div class="dropdown-divider"></div>
-                            <p class="card-text"><small class="text-muted">Team C</small></p>
-                            <a href="#">
-                                <button type="button" class="btn btn-outline-primary">Email</button>
-                            </a>
-                        </div>
-                    </div>
+                        {% for produto in produto_list %}
+                            <div class="col-12 col-sm-6 col-md-3 d-flex align-items-sm-stretch flex-column">
+                                <div class="card d-flex flex-fill mb-5" style="width:250px !important;">
+                                    {% if produto.imagem %}
+                                        <img class="card-img-top pr-0 mr-0" src="{{ produto.imagem.url }}"
+                                             style="width:250px !important;height:200px !important;">
+                                    {% endif %}
+                                    <div class="card-body">
+                                        <h4 class="card-title">{{ produto.nome }}</h4>
+                                        <p class="card-text">{{ produto.descricao }}</p>
+                                        <p class="card-text"><small class="text-muted">{{ produto.preco }}</small>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
                 </div>
             </div>
         </div>
@@ -74,7 +55,7 @@
         $('#search').keyup(function () {
             $('.card').removeClass('d-none');
             var filter = $(this).val(); // get the value of the input, which we filter on
-            $('.card-deck').find('.card .card-body h4:not(:contains("' + filter + '"))').parent().parent().addClass('d-none');
+            $('.card-deck').find('.col-12 .card .card-body h4:not(:contains("' + filter + '"))').parent().parent().parent().addClass('d-none');
         })
 
         $('#btnSort').click(function () {

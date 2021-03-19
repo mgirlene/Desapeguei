@@ -15,6 +15,7 @@ class Produto(models.Model):
     preco = models.DecimalField(max_digits=10, decimal_places=2)
     descricao = models.TextField(null=True, blank=True)
     quantidade = models.IntegerField()
+    imagem = models.ImageField(upload_to='produtos', null=True, blank=True)
     fk_usuario = models.ForeignKey("accounts.Usuario", on_delete=models.CASCADE)
     fk_categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
 

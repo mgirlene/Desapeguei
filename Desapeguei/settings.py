@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'cpf_field',
+    'easy_thumbnails',
     #apps
     'accounts',
     'carrinho',
@@ -183,4 +184,10 @@ SOCIALACCOUNT_PROVIDERS = {
             'access_type': 'online',
         }
     }
+}
+
+THUMBNAIL_ALIASES = {
+    '': {
+        'produtos':{'size': (350,350), 'crop': True},
+    },
 }

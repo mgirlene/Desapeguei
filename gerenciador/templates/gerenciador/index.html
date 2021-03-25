@@ -1,42 +1,42 @@
 {% extends 'base.html' %}
+{% load thumbnail %}
 
 {% block title %}Index - Desapeguei{% endblock title %}
 
 {% block content %}
-    <div class="row justify-content-center">
+    <div class="row justify-content-center" style="padding-left: 30px;">
         <div class="col-xl-10 col-lg-8 col-md-8 col-sm-11 mt-4 mb-5 pb-5 justify-content-center">
             <nav class="navbar navbar-light justify-content-center mt-4">
-                <form class="form-inline">
-                    <div class="input-group mb-3">
-                        <input class="form-control form-control-lg" type="search"
-                               placeholder="Type a name"
-                               aria-label="Search" id="search">
-                        <div class="input-group-append">
-                            <button type="button" class=" btn btn-primary btn-lg" id="btnSort"><i
-                                    class="fa fa-search"></i></button>
-                        </div>
-                    </div>
-                </form>
+                <div class="form-group input-group">
+                    <input name="consulta" id="txt_consulta" placeholder="Pesquisar" type="text" style="font-size: 20px;" class="form-control">
+                    <span class="input-group-append"><button type="button" class=" btn btn-primary btn-sm" id="btnSort"><i
+                                    class="fa fa-search"></i></button></span>
+                </div>
             </nav>
             <!-- Cards -->
             <div class="layout-margin-8 mt-4">
                 <div class="card-deck">
-                        {% for produto in produto_list %}
-                            <div class="col-12 col-sm-6 col-md-4 d-flex align-items-sm-stretch flex-column">
-                                <div class="card d-flex flex-fill mb-5" style="width:310px !important; border: 1px solid gray">
-                                    {% if produto.imagem %}
-                                        <img class="card-img-top pr-0 mr-0" src="{{ produto.imagem.url }}"
-                                             style="width:300px !important;height:450px !important;">
-                                    {% endif %}
-                                    <div class="card-body">
-                                        <h5 class="card-title">{{ produto.nome }}</h5>
-                                        <p class="card-text">{{ produto.descricao }}</p>
-                                        <h5 class="card-text"><b>R${{ produto.preco }}</b>
-                                            <a href="#" class="d-flex float-right btn btn-success">Comprar</a></h5>
+                    {% for produto in produto_list %}
+                        <div class="col-12 col-sm-6 col-md-4 d-flex align-items-sm-stretch flex-column">
+                            <div class="thumbnail">
+                                <a href="#" style="text-decoration:none; color:black;">
+                                    <div class="card d-flex flex-fill mb-5"
+                                         style="width:310px !important; border: 1px solid gray">
+                                        {% if produto.imagem %}
+                                            <img class="card-img-top pr-0 mr-0"
+                                                 src="{{ produto.imagem|thumbnail_url:'produtos' }}">
+                                        {% endif %}
+                                        <div class="card-header">
+                                            <h5 class="card-title">{{ produto.nome }}</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <h5 class="card-text text-center"><b>R${{ produto.preco }}</b></h5>
+                                        </div>
                                     </div>
-                                </div>
+                                </a>
                             </div>
-                        {% endfor %}
+                        </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>
@@ -46,23 +46,8 @@
 
 {% block js %}
     <script type="text/javascript">
-        // this overrides `contains` to make it case insenstive
-        jQuery.expr[':'].contains = function (a, i, m) {
-            return jQuery(a).text().toUpperCase()
-                .indexOf(m[3].toUpperCase()) >= 0;
-        };
-
-        $('#search').keyup(function () {
-            $('.card').removeClass('d-none');
-            var filter = $(this).val(); // get the value of the input, which we filter on
-            $('.card-deck').find('.col-12 .card .card-body h4:not(:contains("' + filter + '"))').parent().parent().parent().addClass('d-none');
-        })
-
-        $('#btnSort').click(function () {
-            $('.card-deck .card').sort(function (a, b) {
-                return $(a).find(".card-title").text() > $(b).find(".card-title").text() ? 1 : -1;
-            }).appendTo(".card-deck");
-        })
+        //$('input#txt_consulta').quicksearch('table#tabela tbody tr');
+        //https://jsfiddle.net/2tzfbg2q/
     </script>
 {% endblock js %}
 

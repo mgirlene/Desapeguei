@@ -25,3 +25,14 @@ class Produto(models.Model):
     class Meta:
         db_table = 'produto'
         verbose_name_plural = 'produtos'
+
+class ProdutoImagem(models.Model):
+    imagem = models.ImageField(upload_to='produtos', null=True, blank=True)
+    fk_produto = models.ForeignKey(Produto, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return '{}'.format(self.id)
+
+    class Meta:
+        db_table = 'produto_imagem'
+        verbose_name_plural = 'produtos_imagens'

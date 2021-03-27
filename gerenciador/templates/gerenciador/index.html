@@ -4,13 +4,70 @@
 {% block title %}Index - Desapeguei{% endblock title %}
 
 {% block content %}
+    <main>
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-dark mdb-color lighten-3 mt-3 mb-5"
+                 style="background-color: #9da2a9;">
+                <div class="dropdown show">
+                    <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                       style="background-color: white;color: black;">
+                        Categoria
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </div>
+                <ul class="navbar-nav mr-auto">
+                </ul>
+                <form class="form-inline">
+                    <div class="md-form my-0">
+                        <input class="form-control mr-sm-5" type="text" placeholder="Search" aria-label="Search">
+                    </div>
+                </form>
+            </nav>
+            <!--/.Navbar-->
+
+            <!--Section: Products v.3-->
+            <section class="text-center mb-4">
+
+                <!--Grid row-->
+                <div class="row wow fadeIn">
+
+                    {% for produto in produto_list %}
+                        <div class="col-lg-3 col-md-6 mb-4">
+                            <a href="#" style="text-decoration:none; color:black;">
+                                <div class="card">
+                                    <div class="view overlay">
+                                        <img src="{{ produto.imagem|thumbnail_url:'produtos' }}"
+                                             class="card-img-top" alt="">
+                                    </div>
+                                    <div class="card-body text-center">
+                                        <h5>{{ produto.nome }}</h5>
+                                        <h4 class="font-weight-bold blue-text">
+                                            <strong>R${{ produto.preco }}</strong>
+                                        </h4>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+            </section>
+
+        </div>
+    </main>
+    <!--Main layout-->
     <div class="row justify-content-center" style="padding-left: 30px;">
         <div class="col-xl-10 col-lg-8 col-md-8 col-sm-11 mt-4 mb-5 pb-5 justify-content-center">
             <nav class="navbar navbar-light justify-content-center mt-4">
                 <div class="form-group input-group">
-                    <input name="consulta" id="txt_consulta" placeholder="Pesquisar" type="text" style="font-size: 20px;" class="form-control">
+                    <input name="consulta" id="txt_consulta" placeholder="Pesquisar" type="text"
+                           style="font-size: 20px;" class="form-control">
                     <span class="input-group-append"><button type="button" class=" btn btn-primary btn-sm" id="btnSort"><i
-                                    class="fa fa-search"></i></button></span>
+                            class="fa fa-search"></i></button></span>
                 </div>
             </nav>
             <!-- Cards -->
@@ -21,7 +78,7 @@
                             <div class="thumbnail">
                                 <a href="#" style="text-decoration:none; color:black;">
                                     <div class="card d-flex flex-fill mb-5"
-                                         style="width:310px !important; border: 1px solid gray">
+                                         style="border: 1px solid gray">
                                         {% if produto.imagem %}
                                             <img class="card-img-top pr-0 mr-0"
                                                  src="{{ produto.imagem|thumbnail_url:'produtos' }}">

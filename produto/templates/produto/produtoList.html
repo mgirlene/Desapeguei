@@ -29,8 +29,8 @@
                     {% for produto in produto_list %}
                         <div class="col-12 col-sm-6 col-md-4 d-flex align-items-sm-stretch flex-column">
                             <div class="thumbnail">
-                                <div class="card d-flex flex-fill mb-5"
-                                     style="width:310px !important; border: 1px solid gray">
+                                <div class="card d-flex flex-fill mb-5 ml-5"
+                                     style="border: 1px solid gray">
                                     {% if produto.imagem %}
                                         <img class="card-img-top pr-0 mr-0" src="{{ produto.imagem|thumbnail_url:'produtos' }}">
                                     {% endif %}

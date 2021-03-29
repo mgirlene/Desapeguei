@@ -7,7 +7,7 @@
     <main>
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-dark mdb-color lighten-3 mt-3 mb-5"
-                 style="background-color: #9da2a9;">
+                 style="background-color: #93a0a2;">
                 <div class="dropdown show">
                     <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
@@ -20,12 +20,10 @@
                         <a class="dropdown-item" href="#">Something else here</a>
                     </div>
                 </div>
-                <ul class="navbar-nav mr-auto">
-                </ul>
                 <form class="form-inline">
-                    <div class="md-form my-0">
-                        <input class="form-control mr-sm-5" type="text" placeholder="Search" aria-label="Search">
-                    </div>
+                        <div class="md-form my-0">
+                            <input class="form-control mr-sm-5 ml-4" type="text" placeholder="Pesquisar" aria-label="Search" style="padding-right: 46rem!important;">
+                        </div>
                 </form>
             </nav>
             <!--/.Navbar-->
@@ -60,44 +58,6 @@
         </div>
     </main>
     <!--Main layout-->
-    <div class="row justify-content-center" style="padding-left: 30px;">
-        <div class="col-xl-10 col-lg-8 col-md-8 col-sm-11 mt-4 mb-5 pb-5 justify-content-center">
-            <nav class="navbar navbar-light justify-content-center mt-4">
-                <div class="form-group input-group">
-                    <input name="consulta" id="txt_consulta" placeholder="Pesquisar" type="text"
-                           style="font-size: 20px;" class="form-control">
-                    <span class="input-group-append"><button type="button" class=" btn btn-primary btn-sm" id="btnSort"><i
-                            class="fa fa-search"></i></button></span>
-                </div>
-            </nav>
-            <!-- Cards -->
-            <div class="layout-margin-8 mt-4">
-                <div class="card-deck">
-                    {% for produto in produto_list %}
-                        <div class="col-12 col-sm-6 col-md-4 d-flex align-items-sm-stretch flex-column">
-                            <div class="thumbnail">
-                                <a href="#" style="text-decoration:none; color:black;">
-                                    <div class="card d-flex flex-fill mb-5"
-                                         style="border: 1px solid gray">
-                                        {% if produto.imagem %}
-                                            <img class="card-img-top pr-0 mr-0"
-                                                 src="{{ produto.imagem|thumbnail_url:'produtos' }}">
-                                        {% endif %}
-                                        <div class="card-header">
-                                            <h5 class="card-title">{{ produto.nome }}</h5>
-                                        </div>
-                                        <div class="card-body">
-                                            <h5 class="card-text text-center"><b>R${{ produto.preco }}</b></h5>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
-    </div>
 {% endblock content %}
 
 

@@ -1,17 +1,8 @@
 {% extends 'base.html' %}
 {% load thumbnail %}
 {% block title %}
-    Produtos
+    Anuncios
 {% endblock title %}
-
-{% block page %}
-    <h3 style="margin-top: .8rem;">Estoque de Produtos</h3>
-    <a class="btn btn-primary m-3"
-       onclick="javascript:history.back();">
-        <i class="fas fa-arrow-left"></i>
-        <span>Voltar</span>
-    </a>
-{% endblock page %}
 
 {% block content %}
     <hr>
@@ -19,37 +10,45 @@
     {% csrf_token %}
     <div class="container-fluid">
         <div class="card shadow mb-4">
-            <div class="card-header py-3">
+            <div class="card-header py-3 mb-5">
                 <h4 class="m-0 font-weight-bold text-primary ">Produtos
-                    <a href="{% url 'produto_cadastro' %}" class="d-flex float-right btn btn-success">Novo Produto</a>
+                    <a href="{% url 'produto_cadastro' %}" class="d-flex float-right btn btn-success">
+                       <i class="fa fa-plus"></i>
+                                <span class="ml-1 cor_nav">Novo Produto</span>
+                    </a>
                 </h4>
             </div>
-            <div class="layout-margin-8 mt-4">
-                <div class="card-deck">
-                    {% for produto in produto_list %}
-                        <div class="col-12 col-sm-6 col-md-4 d-flex align-items-sm-stretch flex-column">
-                            <div class="thumbnail">
-                                <div class="card d-flex flex-fill mb-5 ml-5"
-                                     style="border: 1px solid gray">
-                                    {% if produto.imagem %}
-                                        <img class="card-img-top pr-0 mr-0" src="{{ produto.imagem|thumbnail_url:'produtos' }}">
-                                    {% endif %}
-                                    <div class="card-body">
-                                        <h5 class="card-title">{{ produto.nome }}</h5>
-                                        <p class="card-text">{{ produto.descricao }}</p>
-                                        <h5 class="card-text"><b>R${{ produto.preco }}</b></h5><br>
-                                        <p>
-                                            <a href="{% url 'produto_editar' produto.id %}" class="d-flex float-right btn btn-primary">Editar</a>
-                                            <a href="{% url 'produto_delete' produto.id %}" class="d-flex float-left btn btn-danger">Excluir</a>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    {% endfor %}
-                </div>
-            </div>
+            <main>
+                <div class="container">
+                    <!--Section: Products v.3-->
+                    <section class="text-center mb-4">
 
+                        <!--Grid row-->
+                        <div class="row wow fadeIn">
+
+                            {% for produto in produto_list %}
+                                <div class="col-lg-3 col-md-6 mb-4">
+                                    <a href="#" style="text-decoration:none; color:black;">
+                                        <div class="card">
+                                            <div class="view overlay">
+                                                <img src="{{ produto.imagem|thumbnail_url:'produtos' }}"
+                                                     class="card-img-top" alt="">
+                                            </div>
+                                            <div class="card-body text-center">
+                                                <h5>{{ produto.nome }}</h5>
+                                                <h4 class="font-weight-bold blue-text">
+                                                    <strong>R${{ produto.preco }}</strong>
+                                                </h4>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </section>
+
+                </div>
+            </main>
         </div>
     </div>
 {% endblock content %}

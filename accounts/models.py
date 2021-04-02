@@ -2,21 +2,6 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from cpf_field.models import CPFField
 
-class Endereco(models.Model):
-    estado = models.CharField(max_length=50)
-    sigla_estado = models.CharField(max_length=2)
-    cidade = models.CharField(max_length=50)
-    rua = models.CharField(max_length=100)
-    numero = models.IntegerField()
-    complemento = models.CharField(max_length=200)
-
-    def __str__(self):
-        return '{}'.format(self.rua)
-
-    class Meta:
-        db_table = 'endereco'
-        verbose_name_plural = 'enderecos'
-
 class UsuarioManager(BaseUserManager):
 
     def _create_user(self, email, password, **extra_fields):
@@ -47,7 +32,6 @@ class Usuario(AbstractUser):
     data_nascimento = models.DateField(null=True, blank=True)
     celular = models.CharField(max_length=50, null=True, blank=True)
     cpf = CPFField('cpf')
-    fk_endereco = models.ForeignKey(Endereco, blank=True, null=True, on_delete=models.CASCADE)
     is_staff =models.BooleanField('Membro da equipe', default=True)
 
     USERNAME_FIELD = 'email'

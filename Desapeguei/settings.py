@@ -43,11 +43,9 @@ INSTALLED_APPS = [
     'easy_thumbnails',
     #apps
     'accounts',
-    'carrinho',
+    'favorito',
     'gerenciador',
-    'pagamento',
-    'produto',
-    'vendas',
+    'anuncio',
 
     #allauth
     'allauth',
@@ -105,7 +103,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'Desapeguei_dsc',
         'USER': 'postgres',
-        'PASSWORD': '9991',
+        'PASSWORD': 'postgres',
         'HOST': '127.0.0.1',
         'PORT': '',
     }
@@ -188,6 +186,6 @@ SOCIALACCOUNT_PROVIDERS = {
 
 THUMBNAIL_ALIASES = {
     '': {
-        'produtos':{'size': (350,350), 'crop': True},
+        'anuncios':{'size': (350,350), 'crop': True},
     },
 }

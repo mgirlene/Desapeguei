@@ -22,7 +22,7 @@
                 </div>
                 <form class="form-inline">
                         <div class="md-form my-0">
-                            <input class="form-control mr-sm-5 ml-4" type="text" placeholder="Pesquisar" aria-label="Search" style="padding-right: 46rem!important;">
+                            <input class="form-control mr-sm-5 ml-4" type="text" placeholder="Pesquisar" aria-label="Search" style="padding-right: 45rem !important;">
                         </div>
                 </form>
             </nav>
@@ -34,18 +34,18 @@
                 <!--Grid row-->
                 <div class="row wow fadeIn">
 
-                    {% for produto in produto_list %}
+                    {% for anuncio in anuncio_list %}
                         <div class="col-lg-3 col-md-6 mb-4">
                             <a href="#" style="text-decoration:none; color:black;">
                                 <div class="card">
                                     <div class="view overlay">
-                                        <img src="{{ produto.imagem|thumbnail_url:'produtos' }}"
+                                        <img src="{{ anuncio.imagem|thumbnail_url:'anuncios' }}"
                                              class="card-img-top" alt="">
                                     </div>
                                     <div class="card-body text-center">
-                                        <h5>{{ produto.nome }}</h5>
+                                        <h5>{{ anuncio.nome }}</h5>
                                         <h4 class="font-weight-bold blue-text">
-                                            <strong>R${{ produto.preco }}</strong>
+                                            <strong>R${{ anuncio.preco }}</strong>
                                         </h4>
                                     </div>
                                 </div>

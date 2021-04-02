@@ -92,13 +92,13 @@
                             </a>
                         </li>
                         <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link cor_nav dropdown-toggle" href="{% url 'produto_list' %}">
+                            <a class="nav-link cor_nav dropdown-toggle" href="{% url 'anuncio_lista' %}">
                                 <i class="cor_nav fas fa-barcode"></i>
-                                <span class="ml-1 cor_nav">Produtos</span>
+                                <span class="ml-1 cor_nav">Anuncios</span>
                             </a>
                         </li>
                         <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link cor_nav dropdown-toggle" href="{% url 'produto_cadastro' %}">
+                            <a class="nav-link cor_nav dropdown-toggle" href="{% url 'anuncio_cadastro' %}">
                                 <i class="cor_nav fas fa-bullhorn"></i>
                                 <span class="ml-1 cor_nav">Anunciar</span>
                             </a>
@@ -134,8 +134,7 @@
                                     Alterar Senha
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a style="color: red;" class="dropdown-item" href="#" data-toggle="modal"
-                                   data-target="#logoutModal">
+                                <a style="color: red;" class="dropdown-item" href="{% url 'logout' %}">
                                     <i style="color: red;"
                                        class="fas fa-sign-out-alt fa-sm fa-fw mr-2"></i> Sair
                                 </a>
@@ -186,26 +185,6 @@
 <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
 </a>
-
-<!-- Logout Modal-->
-<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Deseja Sair?</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div class="modal-body">Selecione "Sair" abaixo se você deseja encerrar sua sessão.</div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                <a class="btn btn-primary" href="{% url 'logout' %}">Sair</a>
-            </div>
-        </div>
-    </div>
-</div>
 
 <!-- Bootstrap core JavaScript-->
 <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>

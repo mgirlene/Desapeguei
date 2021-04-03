@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Atualizar Anuncio
+{% endblock title %}
+
+{% block page %}
+{% endblock page %}
+
+{% block content %}
+    <hr>
+    <!-- Content Row -->
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3 text-center">
+                    <h4 class="m-0 font-weight-bold text-primary">Editar Anuncio</h4>
+                </div>
+                <div class="p-5">
+                    {% if form.errors %}
+                        {% for field in form %}
+                            {% for error in field.errors %}
+                                <div class="alert alert-danger">
+                                    <strong>{{ field.name|title }} {{ error|escape }}</strong>
+                                </div>
+                            {% endfor %}
+                        {% endfor %}
+                        {% for error in form.non_field_errors %}
+                            <div class="alert alert-danger">
+                                <strong>{{ error|escape }}</strong>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                    <form method="post" class="user" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group row">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <input type="text" class="form-control" name="nome"
+                                       required
+                                       value="{{ form.nome.value }}" placeholder="Nome">
+                            </div>
+                            <div class="col-sm-6">
+                                {{ form.preco }}
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <input type="text" class="form-control" name="localizacao"
+                                       required value="{{ form.localizacao.value }}" placeholder="Localização" maxlength="8">
+                            </div>
+                            <div class="col-sm-6">
+                                <textarea id="descricao" class="form-control" name="descricao" placeholder="Descrição"
+                                          required>{{ form.descricao.value }}</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="form-group col-md-6">
+                                <select id="id_status" name="fk_status" class="form-control">
+                                    {% for st in form.fk_status %}
+                                        <tr>
+                                            <td>
+                                                {{ st }}
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-sm-6">
+                                <select id="id_categoria" name="fk_categoria" class="form-control">
+                                    {% for cat in form.fk_categoria %}
+                                        <tr>
+                                            <td>
+                                                {{ cat }}
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-6" style="border: 1px solid black;">
+                                {{ form.imagem }}
+                            </div>
+                        </div>
+                        <input type="hidden" name="fk_usuario" value="{{ form.fk_usuario.value }}">
+                        <div class="d-flex justify-content-center">
+                            <div class="col-sm-4">
+                                <button type="submit" class="btn btn-primary btn-user btn-block">Editar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+{% block js %}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#id_preco").addClass("form-control");
+        });
+    </script>
+{% endblock js %}

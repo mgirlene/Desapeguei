@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% load thumbnail %}
+
+{% block title %}
+    Detalhes
+{% endblock title %}
+
+{% block content %}
+    <!--Main layout-->
+    <main class="mt-4 pt-4">
+        <div class="container dark-grey-text mt-3 mb-5">
+            <div class="card">
+                <!--Grid row-->
+                <div class="row wow fadeIn">
+
+                    <!--Grid column-->
+                    <div class="col-md-6 mb-4">
+                        <div class="d-flex float-right mr-4 mt-2">
+                            <img src="{{ anuncio.imagem|thumbnail_url:'anuncios' }}"
+                                 class="img-fluid" alt="">
+                        </div>
+
+                    </div>
+                    <!--Grid column-->
+
+                    <!--Grid column-->
+                    <div class="col-md-6 mb-4">
+
+                        <!--Content-->
+                        <div class="p-4">
+
+                            <div class="mb-3">
+                                <a href="">
+                                    <span class="badge badge-success mr-1">{{ object.fk_categoria.nome }}</span>
+                                </a>
+                            </div>
+
+                            <p class="lead">
+              <span class="mr-1">
+                 {{ object.preco }}
+              </span>
+                            </p>
+                            <p class="lead font-weight-bold">Descrição</p>
+
+                            <p>{{ object.descricao }}</p>
+                            <p>
+                                <b>Localização: </b> {{ object.localizacao }}
+                            </p>
+                            <p>
+                                <b>Anunciado
+                                    por:</b> {{ object.fk_usuario.first_name }} {{ object.fk_usuario.last_name }}
+                            </p>
+                            <p>
+                                <b>Email:</b> {{ object.fk_usuario }}
+                            </p>
+                            <p>
+                                <b>Contato:</b> {{ object.fk_usuario.celular }}
+                            </p>
+                            <form class="form">
+                                <div class="d-flex float-left">
+                                    <a title="Favoritar" href="#" type="button" class="btn tool"
+                                       data-placement="bottom">
+                                        <i class="fa-lg far fa-heart"></i>
+                                    </a>
+                                </div>
+                                <div class="d-flex float-left">
+                                    <a style="border-radius: 20px;" type="button"
+                                       class="btn btn-user btn-info">
+                                        <i class="fa-lg far fa-comments"></i>
+                                        <span class="ml-1">Conversar com o vendedor</span></a>
+                                </div>
+
+                            </form>
+
+                        </div>
+                        <!--Content-->
+
+                    </div>
+                    <!--Grid column-->
+
+                </div>
+                <!--Grid row-->
+            </div>
+
+        </div>
+    </main>
+
+{% endblock content %}
+
+{% block js %}
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".tool").tooltip();
+        });
+    </script>
+
+{% endblock js %}

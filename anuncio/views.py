@@ -1,11 +1,11 @@
 from django.contrib import messages
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, UpdateView, DeleteView, ListView
+from django.views.generic import CreateView, UpdateView, DeleteView, ListView, TemplateView, DetailView
 from .forms import AnuncioForm
 from .models import Anuncio
 from anuncio.models import Categoria
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.db.models import Q
+from django.shortcuts import get_object_or_404
 
 
 class AnuncioView(LoginRequiredMixin, CreateView):
@@ -56,3 +56,11 @@ class AnuncioListView(LoginRequiredMixin, ListView):
         anuncio = Anuncio.objects.filter(fk_usuario=id_user)
 
         return anuncio
+
+class AnuncioDetailsView(DetailView):
+    model = Anuncio
+    template_name = 'anuncio/anuncioDetails.html'
+
+    def get_object(self):
+        id_ = self.kwargs.get("pk")
+        return get_object_or_404(Anuncio, id=id_)

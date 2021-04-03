@@ -21,9 +21,10 @@
                     </div>
                 </div>
                 <form class="form-inline">
-                        <div class="md-form my-0">
-                            <input class="form-control mr-sm-5 ml-4" type="text" placeholder="Pesquisar" aria-label="Search" style="padding-right: 45rem !important;">
-                        </div>
+                    <div class="md-form my-0">
+                        <input class="form-control mr-sm-5 ml-4" type="text" placeholder="Pesquisar" aria-label="Search"
+                               style="padding-right: 45rem !important;">
+                    </div>
                 </form>
             </nav>
             <!--/.Navbar-->
@@ -47,6 +48,16 @@
                                         <h4 class="font-weight-bold blue-text">
                                             <strong>R${{ anuncio.preco }}</strong>
                                         </h4>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="d-flex float-left">
+                                            <a href="{% url 'anuncio_details' anuncio.id %}" type="button" class="btn btn-outline-info">Detalhar</a>
+                                        </div>
+                                          <div class="d-flex float-right">
+                                            <a href="#" type="button" class="btn">
+                                                 <i class="fa-lg fa fa-heart"></i>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </a>

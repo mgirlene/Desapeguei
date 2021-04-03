@@ -79,22 +79,16 @@
                         </div>
                     </li>
                     {% if user.is_authenticated %}
-                        <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link cor_nav dropdown-toggle" href="#">
-                                <i class="cor_nav fa fa-shopping-basket"></i>
-                                <span class="ml-1 cor_nav">Compras</span>
-                            </a>
-                        </li>
-                        <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link cor_nav dropdown-toggle" href="#">
-                                <i class="cor_nav fas fa-comments-dollar"></i>
-                                <span class="ml-1 cor_nav">Vendas</span>
+                         <li class="nav-item dropdown no-arrow mx-1">
+                            <a class="nav-link cor_nav dropdown-toggle" href="{% url 'index' %}">
+                                <i class="cor_nav fa fa-home"></i>
+                                <span class="ml-1 cor_nav">Inicio</span>
                             </a>
                         </li>
                         <li class="nav-item dropdown no-arrow mx-1">
                             <a class="nav-link cor_nav dropdown-toggle" href="{% url 'anuncio_lista' %}">
                                 <i class="cor_nav fas fa-barcode"></i>
-                                <span class="ml-1 cor_nav">Anuncios</span>
+                                <span class="ml-1 cor_nav">Meus Anuncios</span>
                             </a>
                         </li>
                         <li class="nav-item dropdown no-arrow mx-1">
@@ -107,8 +101,8 @@
                         <!-- Nav Item - Messages -->
                         <li class="nav-item dropdown no-arrow mx-1">
                             <a class="nav-link dropdown-toggle" href="#">
-                                <i class="cor_nav fa fa-shopping-cart"></i>
-                                <span class="ml-1 cor_nav">Carrinho</span>
+                                <i class="cor_nav fa fa-heart" style="color: red;"></i>
+                                <span class="ml-1 cor_nav">Favoritos</span>
                             </a>
                         </li>
 

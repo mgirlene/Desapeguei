@@ -6,27 +6,15 @@
 {% block content %}
     <main>
         <div class="container">
-            <nav class="navbar navbar-expand-lg navbar-dark mdb-color lighten-3 mt-3 mb-5"
-                 style="background-color: #93a0a2;">
-                <div class="dropdown show">
-                    <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                       style="background-color: white;color: black;">
-                        Categoria
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
+
+            <form action="{% url 'index' %}">
+                <div class="form-group input-group">
+                    <input name="search" id="txt_consulta" placeholder="Pesquisar" type="text" style="font-size: 20px;"
+                           class="form-control">
+                    <span class="input-group-append"><button type="submit" class=" btn btn-primary btn-sm" id="btnSort"><i
+                                    class="fa fa-search"></i></button></span>
                 </div>
-                <form class="form-inline">
-                    <div class="md-form my-0">
-                        <input class="form-control mr-sm-5 ml-4" type="text" placeholder="Pesquisar" aria-label="Search"
-                               style="padding-right: 45rem !important;">
-                    </div>
-                </form>
-            </nav>
+            </form>
             <!--/.Navbar-->
 
             <!--Section: Products v.3-->

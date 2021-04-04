@@ -11,8 +11,20 @@ class Index(ListView):
 
     def get_queryset(self):
         id_user = self.request.user.id
-        if id_user:
-            anuncio = Anuncio.objects.filter(~Q(fk_usuario=id_user))
-        else:
+
+        anuncio = ""
+
+        search = self.request.GET.get('search', '')
+        if search:
+            anuncio = Anuncio.objects.filter(Q(nome__icontains=search))
+
+        if not anuncio:
             anuncio = Anuncio.objects.all()
+
+        if id_user:
+            anuncio = anuncio.filter(~Q(fk_usuario=id_user))
+
+            if not anuncio:
+                anuncio = Anuncio.objects.filter(~Q(fk_usuario=id_user))
+
         return anuncio

@@ -25,7 +25,7 @@
 
                     {% for anuncio in anuncio_list %}
                         <div class="col-lg-3 col-md-6 mb-4">
-                            <a href="#" style="text-decoration:none; color:black;">
+                            <a href="{% url 'anuncio_details' anuncio.id %}" style="text-decoration:none; color:black;">
                                 <div class="card">
                                     <div class="view overlay">
                                         <img src="{{ anuncio.imagem|thumbnail_url:'anuncios' }}"

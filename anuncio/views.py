@@ -38,6 +38,7 @@ class AnuncioUpdateView(LoginRequiredMixin, UpdateView):
     def get_success_url(self):
         return reverse_lazy(self.success_url)
 
+
 class AnuncioDeleteView(LoginRequiredMixin, DeleteView):
     model = Anuncio
     template_name = 'anuncio/anuncioDelete.html'
@@ -45,6 +46,7 @@ class AnuncioDeleteView(LoginRequiredMixin, DeleteView):
 
     def get_success_url(self):
         return reverse_lazy(self.success_url)
+
 
 class AnuncioListView(LoginRequiredMixin, ListView):
     model = Anuncio

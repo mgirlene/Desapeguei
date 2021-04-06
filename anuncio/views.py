@@ -7,6 +7,8 @@ from favorito.models import Favorito
 from anuncio.models import Categoria
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404
+import pycep_correios
+from pycep_correios.exceptions import InvalidCEP
 
 
 class AnuncioView(LoginRequiredMixin, CreateView):
@@ -78,5 +80,16 @@ class AnuncioDetailsView(DetailView):
             fav = favoritos[i]
             list.append(fav.fk_anuncio_id)
 
+        anunc = Anuncio.objects.get(id=anuncio)
+        try:
+            endereco = pycep_correios.get_address_from_cep(anunc.localizacao)
+            print(endereco['cidade'])
+            print(endereco['uf'])
+        except InvalidCEP:
+            endereco['cidade'] = 'None'
+            endereco['uf'] = 'None'
+
         context['favoritos'] = list
+        context['endereco_cid'] = endereco['cidade']
+        context['endereco_uf'] = endereco['uf']
         return context

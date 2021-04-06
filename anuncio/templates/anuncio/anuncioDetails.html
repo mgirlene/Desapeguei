@@ -31,7 +31,7 @@
 
                             <div class="mb-3">
                                 <a href="">
-                                    <span class="badge badge-success mr-1">{{ object.fk_categoria.nome }}</span>
+                                    <span class="badge badge-info mr-1">{{ object.fk_categoria.nome }}</span>
                                 </a>
                             </div>
 
@@ -44,7 +44,7 @@
 
                             <p>{{ object.descricao }}</p>
                             <p>
-                                <b>Localização: </b> {{ object.localizacao }} {{ endereco_cid }} {{ endereco_uf }}
+                                <b>Localização: </b> {{ endereco_cid }} - {{ endereco_uf }} ({{ endereco_cep }})
                             </p>
                             <p>
                                 <b>Anunciado
@@ -69,8 +69,8 @@
                                 </div>
                                 <div class="d-flex float-left">
                                     <a style="border-radius: 20px;" type="button" href="{% url 'login' %}" target="_blank"
-                                       class="btn btn-user btn-info">
-                                        <i class="fa-lg far fa-comments"></i>
+                                       class="btn btn-user btn-success">
+                                        <i class="fa-lg fab fa-whatsapp"></i>
                                         <span class="ml-1">Conversar com o vendedor</span></a>
                                 </div>
                             {% elif user.id != object.fk_usuario.id %}
@@ -97,8 +97,8 @@
                                 </div>
                                 <div class="d-flex float-left">
                                     <a style="border-radius: 20px;" type="button" target="_blank" href="https://api.whatsapp.com/send?phone=55{{ anuncio.fk_usuario.celular }}"
-                                       class="btn btn-user btn-info">
-                                        <i class="fa-lg far fa-comments"></i>
+                                       class="btn btn-user btn-success">
+                                        <i class="fa-lg fab fa-whatsapp"></i>
                                         <span class="ml-1">Conversar com o vendedor</span></a>
                                 </div>
                             {% else %}
@@ -110,8 +110,8 @@
                                 </div>
                                 <div class="d-flex float-left">
                                     <button style="border-radius: 20px;" type="button"
-                                       class="btn btn-user btn-info" disabled>
-                                        <i class="fa-lg far fa-comments"></i>
+                                       class="btn btn-user btn-success" disabled>
+                                        <i class="fa-lg fab fa-whatsapp"></i>
                                         <span class="ml-1">Conversar com o vendedor</span></button>
                                 </div>
                             {% endif %}

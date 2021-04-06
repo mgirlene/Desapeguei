@@ -48,8 +48,9 @@
 
                         <div class="form-group row">
                             <div class="col-sm-6 mb-3 mb-sm-0">
-                                <input type="text" class="form-control" name="localizacao"
-                                       required value="{{ localizacao }}" placeholder="Localização(CEP)" maxlength="8">
+                                <input type="text" class="form-control" name="localizacao" id="id_localizacao"
+                                       required value="{{ localizacao }}" placeholder="Localização(CEP)" maxlength="8"
+                                        onkeypress="return event.charCode >= 48 && event.charCode <= 57">
                             </div>
                             <div class="col-sm-6">
                                 <select class="form-control" id="id_categoria" name="fk_categoria"
@@ -78,7 +79,7 @@
                                     <path d="M3.502 3.4h5.11L12.02.09h10.222l3.407 3.31h5.111c1.882 0 3.408 1.481 3.408 3.309v19.856c0 1.828-1.526 3.31-3.408 3.31H3.502c-1.882 0-3.408-1.482-3.408-3.31V6.709c0-1.828 1.526-3.31 3.408-3.31zM17.13 8.364c-4.705 0-8.518 3.704-8.518 8.273 0 4.57 3.813 8.273 8.518 8.273 4.704 0 8.518-3.704 8.518-8.273 0-4.57-3.814-8.273-8.518-8.273zm0 3.309c2.823 0 5.11 2.222 5.11 4.964 0 2.741-2.287 4.964-5.11 4.964-2.823 0-5.111-2.223-5.111-4.964 0-2.742 2.288-4.964 5.11-4.964z"
                                           fill="#4e18cc" fill-rule="evenodd"></path></svg></span><br>
                                     <span class="box__main-text">Adicionar fotos</span><br>
-                                    <span class="box__info-text">No máximo 5 imagens</span>
+                                    <span class="box__info-text"></span>
                                 </div>
                             </div>
                         </div>
@@ -106,6 +107,5 @@
             }
 
         });
-        //console.log(document.getElementById('file').files.length);
     </script>
 {% endblock js %}

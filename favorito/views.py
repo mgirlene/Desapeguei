@@ -13,6 +13,7 @@ from django.utils.decorators import method_decorator
 class FavoritoView(LoginRequiredMixin, CreateView):
     model = Favorito
     fields = ['fk_usuario', 'fk_anuncio']
+    template_name = "gerenciador/index.html"
 
     def post(self, request, *args, **kwargs):
 
@@ -56,4 +57,4 @@ def listFavoritas(request):
 
     data['anuncios'] = list
 
-    return render(request, 'anuncio_favoritos.html', data)
+    return render(request, 'favorito/anuncio_favoritos.html', data)

@@ -3,6 +3,7 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, DeleteView, ListView, TemplateView, DetailView
 from .forms import AnuncioForm
 from .models import Anuncio
+from favorito.models import Favorito
 from anuncio.models import Categoria
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404
@@ -66,3 +67,16 @@ class AnuncioDetailsView(DetailView):
     def get_object(self):
         id_ = self.kwargs.get("pk")
         return get_object_or_404(Anuncio, id=id_)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        anuncio = self.kwargs.get("pk")
+        user = self.request.user
+        favoritos = Favorito.objects.filter(fk_usuario=user.id, fk_anuncio=anuncio)
+        list = []
+        for i in range(0, len(favoritos)):
+            fav = favoritos[i]
+            list.append(fav.fk_anuncio_id)
+
+        context['favoritos'] = list
+        return context

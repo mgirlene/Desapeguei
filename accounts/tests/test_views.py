@@ -1,9 +1,11 @@
 from django.test import TestCase, Client
 from django.urls import reverse_lazy
+from accounts.models import Usuario
 
 class UserCreateViewTestCase(TestCase):
 
     def setUp(self):
+
         self.email = 'carla@gmail.com'
         self.username = 'carla@gmail.com'
         self.password1 = '1234@5678'
@@ -29,5 +31,6 @@ class UserCreateViewTestCase(TestCase):
         self.cliente = Client()
 
     def test_form_valid(self):
+
         request = self.cliente.post(reverse_lazy('userCreate'), data=self.dados)
         self.assertEquals(request.status_code, 302)

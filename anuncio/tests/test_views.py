@@ -1,34 +1,43 @@
-from django.test import TestCase
-from accounts.forms import UsuarioRegisterForm
+from django.test import TestCase, Client
+from model_mommy import mommy
+from accounts.models import Usuario
+from django.urls import reverse_lazy
 
-class AnuncioFormTestCase(TestCase):
+class AnuncioViewTestCase(TestCase):
 
     def setUp(self):
-        self.email = 'carla@gmail.com'
-        self.username = 'carla@gmail.com'
-        self.password1 = '1234@5678'
-        self.password2 = '1234@5678'
-        self.first_name = 'Carla'
-        self.last_name = 'da silva'
-        self.celular = '(88)99999-9999'
-        self.cpf = '184.684.200-00'
-        self.data_nascimento = '2000-02-11'
+        self.categoria = mommy.make('Categoria')
+        self.status = mommy.make('Status')
+
+        self.usuario = Usuario.objects.create(
+            email='carla@gmail.com',
+            username='carla@gmail.com',
+            password='1234@5678',
+            first_name='Carla',
+            last_name='da silva',
+            celular='(88)99999-9999',
+            cpf='184.684.200-00',
+            data_nascimento='2000-02-11'
+        )
 
         self.dados = {
-            'email' : self.email,
-            'username' : self.username,
-            'password1' : self.password1,
-            'password2' : self.password2,
-            'first_name' : self.first_name,
-            'last_name' : self.last_name,
-            'celular' : self.celular,
-            'cpf' : self.cpf,
-            'data_nascimento' : self.data_nascimento
+            'nome': 'Geladeira',
+            'preco': 1000,
+            'descricao': 'Geladeira semi nova',
+            'localizacao' : '63430000',
+            'imagem' : '',
+            'fk_usuario' : self.usuario,
+            'fk_categoria' : self.categoria,
+            'fk_status' : self.status
         }
 
-        self.form = UsuarioRegisterForm(data=self.dados)
+        self.cliente = Client()
 
+    def test_form_create(self):
+        request = self.cliente.post(reverse_lazy('anuncio_cadastro'), data=self.dados)
+        self.assertEquals(request.status_code, 302)
 
-    def test_save(self):
-
-        self.assertTrue(self.form.save())
+    def test_list(self):
+        dado = {'pk': self.usuario.id}
+        request = self.client.get(reverse_lazy('anuncio_lista'), data=dado)
+        self.assertEquals(request.status_code, 302)

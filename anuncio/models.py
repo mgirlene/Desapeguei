@@ -36,14 +36,3 @@ class Anuncio(models.Model):
     class Meta:
         db_table = 'anuncio'
         verbose_name_plural = 'anuncios'
-
-class AnuncioImagem(models.Model):
-    imagem = models.ImageField(upload_to='anuncios', null=True, blank=True)
-    fk_anuncio = models.ForeignKey(Anuncio, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return '{}'.format(self.id)
-
-    class Meta:
-        db_table = 'anuncio_imagem'
-        verbose_name_plural = 'anuncios_imagens'

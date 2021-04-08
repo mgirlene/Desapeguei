@@ -83,13 +83,13 @@ class AnuncioDetailsView(DetailView):
         anunc = Anuncio.objects.get(id=anuncio)
         try:
             endereco = pycep_correios.get_address_from_cep(anunc.localizacao)
-            print(endereco['cidade'])
-            print(endereco['uf'])
         except InvalidCEP:
             endereco['cidade'] = 'None'
             endereco['uf'] = 'None'
+            endereco['cep'] = 'None'
 
         context['favoritos'] = list
+        context['endereco_cep'] = endereco['cep']
         context['endereco_cid'] = endereco['cidade']
         context['endereco_uf'] = endereco['uf']
         return context

@@ -1,7 +1,7 @@
 from django.test import TestCase
 from accounts.forms import UsuarioRegisterForm
 
-class AnuncioFormTestCase(TestCase):
+class UsuarioRegisterFormTestCase(TestCase):
 
     def setUp(self):
         self.email = 'carla@gmail.com'

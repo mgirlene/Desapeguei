@@ -37,9 +37,10 @@ class Index(ListView):
         user = self.request.user
         favoritos = Favorito.objects.filter(fk_usuario=user.id)
         list = []
-        for i in range(0, len(favoritos)):
-            fav = favoritos[i]
-            list.append(fav.fk_anuncio_id)
+        if favoritos:
+            for i in range(0, len(favoritos)):
+                fav = favoritos[i]
+                list.append(fav.fk_anuncio_id)
 
         context['favoritos'] = list
         return context

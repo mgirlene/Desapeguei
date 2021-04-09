@@ -51,6 +51,5 @@ class AnuncioViewTestCase(TestCase):
         self.assertEquals(request.status_code, 302)
 
     def test_list(self):
-
         request = self.client.get(reverse_lazy('list_favorito'))
         self.assertEquals(request.status_code, 302)

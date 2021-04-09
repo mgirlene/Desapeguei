@@ -28,6 +28,8 @@ class Index(ListView):
             if not anuncio:
                 anuncio = Anuncio.objects.filter(~Q(fk_usuario=id_user))
 
+        anuncio = anuncio.filter(fk_status=1)
+
         return anuncio
 
     def get_context_data(self, **kwargs):

@@ -42,6 +42,11 @@
                                                 <h4 class="font-weight-bold blue-text">
                                                     <strong>R${{ anuncio.preco }}</strong>
                                                 </h4>
+                                                {% if anuncio.fk_status.id == 1 %}
+                                                    <small class="badge badge-success mr-1">{{ anuncio.fk_status }}</small>
+                                                {% else %}
+                                                    <small class="badge badge-warning mr-1">{{ anuncio.fk_status }}</small>
+                                                {% endif %}
                                             </div>
                                             <div class="card-footer">
                                                 <div class="d-flex float-left">

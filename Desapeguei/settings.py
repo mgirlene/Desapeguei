@@ -13,6 +13,9 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 import os
 from pathlib import Path
 
+import django_heroku
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -102,9 +105,9 @@ SITE_ID = 1
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'Desapeguei_dsc', #nome do banco
+        'NAME': 'Desapeguei_dsc',
         'USER': 'postgres',
-        'PASSWORD': 'postgres',
+        'PASSWORD': '9991',
         'HOST': '127.0.0.1',
         'PORT': '',
     }
@@ -191,3 +194,5 @@ REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
     'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAuthenticated',),
 }
+
+django_heroku.settings(locals())

@@ -7,7 +7,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from django.views.generic import CreateView
 from django.contrib.auth.decorators import login_required
-from django.utils.decorators import method_decorator
 
 
 class FavoritoView(LoginRequiredMixin, CreateView):
@@ -26,12 +25,12 @@ class FavoritoView(LoginRequiredMixin, CreateView):
             fav = Favorito.objects.filter(fk_usuario=usuario, fk_anuncio=anuncio).exists()
 
             if fav:
-                messages.warning(request, 'Esse anuncio já foi favoritado')
+                messages.warning(request, 'Esse anúncio já foi favoritado')
 
             else:
                 favorit = form.save()
                 favorit.save()
-                messages.success(request, 'Anuncio adicionado aos favoritos')
+                messages.success(request, 'Anúncio adicionado aos favoritos')
 
         return redirect('index')
 
@@ -40,7 +39,7 @@ def deleteFavoritas(request, pk):
     usuario = request.user
     anuncio = Favorito.objects.get(fk_anuncio=pk, fk_usuario=usuario.id)
     anuncio.delete()
-    messages.success(request, 'Anúncio excluído.')
+    messages.error(request, 'Anúncio removido dos favoritos')
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 @login_required

@@ -25,6 +25,34 @@
 <body class="bg-gradient-primary">
 
 <div class="container">
+    {% if messages %}
+        <div class="messages d-flex justify-content-center" data-dismiss="alert" style="text-align:center;">
+            {% for message in messages %}
+                {% if message.tags == 'success' %}
+                    <div class="alert bg-success text-white col-md-9" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        {{ message }}
+                    </div>
+                {% elif message.tags == 'warning' %}
+                    <div class="alert bg-warning text-dark col-md-9" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        {{ message }}
+                    </div>
+                {% elif message.tags == 'error' %}
+                    <div class="alert bg-danger text-white col-md-9" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        {{ message }}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    {% endif %}
     {% block content %}
 
     {% endblock content %}
@@ -39,6 +67,14 @@
 
 <!-- Custom scripts for all pages-->
 <script src="{% static 'js/sb-admin-2.min.js' %}"></script>
+
+<script text="javascript">
+    setTimeout(fade_out, 4000);
+
+    function fade_out() {
+        $(".messages").fadeOut().empty();
+    }
+</script>
 
 {% block js %}
 {% endblock js %}

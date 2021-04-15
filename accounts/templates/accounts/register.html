@@ -51,6 +51,51 @@
                         </svg><!-- <i class="fab fa-google fa-fw fa-sm"></i> Font Awesome fontawesome.com --></a>
                 </div>
                 <hr class="my-0">
+                {% if messages %}
+                    <div class="messages" data-dismiss="alert"
+                         style="text-align:center;">
+                        {% for message in messages %}
+                            {% if message.tags == 'success' %}
+                                <div class="alert bg-success text-white" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    {{ message }}
+                                </div>
+                            {% elif message.tags == 'warning' %}
+                                <div class="alert bg-warning text-dark" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    {{ message }}
+                                </div>
+                            {% elif message.tags == 'error' %}
+                                <div class="alert bg-danger text-white" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    {{ message }}
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                {% if form.errors %}
+                    <div class=" d-flex justify-content-center">
+                        {% for field in form %}
+                            {% for error in field.errors %}
+                                <div class="alert alert-danger">
+                                    <strong>{{ field.name|title }} {{ error|escape }}</strong>
+                                </div>
+                            {% endfor %}
+                        {% endfor %}
+                        {% for error in form.non_field_errors %}
+                            <div class="alert alert-danger">
+                                <strong>{{ error|escape }}</strong>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
                 <div class="card-body p-4">
                     <div class="text-center small text-muted mb-4">... ou insira suas informações abaixo.</div>
                     <!-- Login form-->
@@ -165,6 +210,13 @@
         $("#id_celular").mask("(99)99999-9999")
         $("#id_cpf").mask("000.000.000-00")
     });
+
+    setTimeout(fade_out, 4000);
+
+    function fade_out() {
+        $(".messages").fadeOut().empty();
+        $(".alert").fadeOut().empty();
+    }
 </script>
 
 </body>

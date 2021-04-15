@@ -1,6 +1,7 @@
 from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, UpdateView, DeleteView, ListView, TemplateView, DetailView
+from django.views.generic import CreateView, UpdateView, DeleteView, ListView, DetailView
 from .forms import AnuncioForm
 from .models import Anuncio
 from favorito.models import Favorito
@@ -11,11 +12,12 @@ import pycep_correios
 from pycep_correios.exceptions import InvalidCEP
 
 
-class AnuncioView(LoginRequiredMixin, CreateView):
+class AnuncioView(SuccessMessageMixin, LoginRequiredMixin, CreateView):
     model = Anuncio
     template_name = 'anuncio/anuncioRegister.html'
     form_class = AnuncioForm
     success_url = 'anuncio_lista'
+    success_message = "Anuncio cadastrado com sucesso"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -32,22 +34,25 @@ class AnuncioView(LoginRequiredMixin, CreateView):
         return reverse_lazy(self.success_url)
 
 
-class AnuncioUpdateView(LoginRequiredMixin, UpdateView):
+class AnuncioUpdateView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     model = Anuncio
     form_class = AnuncioForm
     template_name = 'anuncio/anuncioUpdate.html'
     success_url = 'anuncio_lista'
+    success_message = "Anuncio editado com sucesso"
 
     def get_success_url(self):
         return reverse_lazy(self.success_url)
 
 
-class AnuncioDeleteView(LoginRequiredMixin, DeleteView):
+class AnuncioDeleteView(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
     model = Anuncio
     template_name = 'anuncio/anuncioDelete.html'
     success_url = 'anuncio_lista'
+    success_message = "Anuncio excluido com sucesso"
 
     def get_success_url(self):
+        messages.error(self.request, self.success_message)
         return reverse_lazy(self.success_url)
 
 
@@ -61,6 +66,7 @@ class AnuncioListView(LoginRequiredMixin, ListView):
         anuncio = Anuncio.objects.filter(fk_usuario=id_user)
 
         return anuncio
+
 
 class AnuncioDetailsView(DetailView):
     model = Anuncio

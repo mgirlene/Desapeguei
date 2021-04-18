@@ -1,15 +1,17 @@
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, UpdateView, DeleteView, ListView, DetailView
-from .forms import AnuncioForm
-from .models import Anuncio
+from django.views.generic import CreateView, UpdateView, DeleteView, ListView, DetailView, FormView
+from .forms import AnuncioForm, ContactForm
+from .models import Anuncio, Contact
 from favorito.models import Favorito
 from anuncio.models import Categoria
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404
 import pycep_correios
 from pycep_correios.exceptions import InvalidCEP
+from django.http import HttpResponseRedirect
+from django.core.mail import send_mail
 
 
 class AnuncioView(SuccessMessageMixin, LoginRequiredMixin, CreateView):
@@ -99,3 +101,34 @@ class AnuncioDetailsView(DetailView):
         context['endereco_cid'] = endereco['cidade']
         context['endereco_uf'] = endereco['uf']
         return context
+
+
+class ContactForm(SuccessMessageMixin, LoginRequiredMixin, FormView):
+    form_class = ContactForm
+    template_name = 'anuncio/contact.html'
+    success_url = reverse_lazy('index')
+    success_message = "Email enviado com sucesso"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        id_anuncio = self.request.GET.get('anuncio', '')
+        anun = Anuncio.objects.get(id=id_anuncio)
+        context['email_anuncio'] = anun.fk_usuario.email
+        return context
+
+    def form_valid(self, form):
+        self.contact = form.save()
+        id_anuncio = self.request.GET.get('anuncio', '')
+        anuncio = Anuncio.objects.get(id=id_anuncio)
+        msg = 'Cliente: ' + self.contact.name + '\n\n' +\
+              'Email: ' + self.contact.email + '\n\n' +\
+              'Anúncio: ' + anuncio.nome + '\n\n' +\
+              'Mensagem: ' + self.contact.mensagem
+        send_mail(
+            'Interessado em seu produto no Desapeguei',
+            '%s' % msg,
+            'desapegueidsc@gmail.com',
+            [self.contact.destinatario],
+            fail_silently=False,
+        )
+        return HttpResponseRedirect(self.get_success_url())

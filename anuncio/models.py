@@ -36,3 +36,17 @@ class Anuncio(models.Model):
     class Meta:
         db_table = 'anuncio'
         verbose_name_plural = 'anuncios'
+
+class Contact(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField(max_length=100)
+    destinatario = models.EmailField(max_length=100)
+    mensagem = models.TextField(max_length=500)
+
+    def __str__(self):
+        return '{}'.format(self.email)
+
+    class Meta:
+        db_table = 'contato'
+        verbose_name_plural = 'contatos'
+

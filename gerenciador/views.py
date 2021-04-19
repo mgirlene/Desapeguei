@@ -3,6 +3,7 @@ from anuncio.models import Anuncio
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 from favorito.models import Favorito
+from anuncio.models import Categoria
 
 
 class Index(ListView):
@@ -16,8 +17,13 @@ class Index(ListView):
         anuncio = ""
 
         search = self.request.GET.get('search', '')
+        categ = self.request.GET.get('cat', '')
+
         if search:
             anuncio = Anuncio.objects.filter(Q(nome__icontains=search))
+
+        if categ:
+            anuncio = Anuncio.objects.filter(Q(fk_categoria=categ))
 
         if not anuncio:
             anuncio = Anuncio.objects.all()
@@ -41,5 +47,6 @@ class Index(ListView):
             fav = favoritos[i]
             list.append(fav.fk_anuncio_id)
 
+        context['TipoCategoria'] = Categoria.objects.all()
         context['favoritos'] = list
         return context

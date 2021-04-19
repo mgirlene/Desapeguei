@@ -9,6 +9,17 @@
 
             <form action="{% url 'index' %}">
                 <div class="form-group input-group">
+                    <div class="dropdown mr-3">
+                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="height: 43px;">
+                            Categorias
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            {% for categoria in TipoCategoria %}
+                                <a class="dropdown-item" href="?cat={{ categoria.id }}">{{ categoria.nome }}</a>
+                            {% endfor %}
+                        </div>
+                    </div>
                     <input name="search" id="txt_consulta" placeholder="Pesquisar" type="text" style="font-size: 20px;"
                            class="form-control">
                     <span class="input-group-append"><button type="submit" class=" btn btn-primary btn-sm" id="btnSort"><i

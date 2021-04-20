@@ -1,12 +1,13 @@
 from django.views.generic import ListView
 from anuncio.models import Anuncio
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 from favorito.models import Favorito
 from anuncio.models import Categoria
+from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
 
 
-class Index(ListView):
+class Index(SuccessMessageMixin, ListView):
     model = Anuncio
     context_object_name = 'anuncio_list'
     template_name = 'gerenciador/index.html'
@@ -23,10 +24,12 @@ class Index(ListView):
             anuncio = Anuncio.objects.filter(Q(nome__icontains=search))
 
         if categ:
-            anuncio = Anuncio.objects.filter(Q(fk_categoria=categ))
+            anuncio = Anuncio.objects.filter(Q(fk_categoria=categ), ~Q(fk_usuario=id_user))
 
         if not anuncio:
             anuncio = Anuncio.objects.all()
+            if search or categ:
+                messages.error(self.request, "Nenhum anúncio existente na sua consulta")
 
         if id_user:
             anuncio = anuncio.filter(~Q(fk_usuario=id_user))

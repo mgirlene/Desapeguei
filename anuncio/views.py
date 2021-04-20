@@ -3,7 +3,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, DeleteView, ListView, DetailView, FormView
 from .forms import AnuncioForm, ContactForm
-from .models import Anuncio, Contact
+from .models import Anuncio
 from favorito.models import Favorito
 from anuncio.models import Categoria
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -131,4 +131,5 @@ class ContactForm(SuccessMessageMixin, LoginRequiredMixin, FormView):
             [self.contact.destinatario],
             fail_silently=False,
         )
+        messages.success(self.request, self.success_message)
         return HttpResponseRedirect(self.get_success_url())

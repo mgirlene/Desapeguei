@@ -1,5 +1,6 @@
 import os
 from pathlib import Path
+
 import django_heroku
 
 
@@ -29,16 +30,11 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'cpf_field',
     'easy_thumbnails',
-
-    # Channels
-    'channels',
-
     # apps
     'accounts',
     'favorito',
     'gerenciador',
     'anuncio',
-    'chat',
 
     # allauth
     'allauth',
@@ -84,17 +80,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Desapeguei.wsgi.application'
 
-ASGI_APPLICATION = 'Desapeguei.asgi.application'
-
-CHANNEL_LAYERS = {
-    'default': {
-        'BACKEND': 'channels_redis.core.RedisChannelLayer',
-        'CONFIG': {
-            "hosts": [('127.0.0.1', 6379)],
-        },
-    },
-}
-
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
@@ -110,7 +95,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'Desapeguei_dsc',
         'USER': 'postgres',
-        'PASSWORD': 'postgres',
+        'PASSWORD': '9991',
         'HOST': '127.0.0.1',
         'PORT': '',
     }
